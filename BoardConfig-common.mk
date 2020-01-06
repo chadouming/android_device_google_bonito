@@ -45,8 +45,6 @@ BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1
 BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware
 BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem
-# STOPSHIP Bringup hack- no low power
-BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/7c4000.sdhci
 
@@ -65,6 +63,19 @@ endif
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+
+# Build vendor image
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+
+BOARD_KERNEL_IMAGE_NAME := Image.lz4
+TARGET_COMPILE_WITH_MSM_KERNEL := true
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CONFIG := bonito_defconfig
+TARGET_KERNEL_SOURCE := kernel/google/bluecross
 
 # DTBO partition definitions
 TARGET_NEEDS_DTBOIMAGE := true
@@ -156,7 +167,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_HIDL_FEATURE_AWARE := true
-WIFI_HIDL_FEATURE_DUAL_INTERFACE:= true
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -190,11 +201,14 @@ DEVICE_MANIFEST_FILE += device/google/bonito/manifest.xml
 DEVICE_MATRIX_FILE += device/google/bonito/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/bonito/device_framework_matrix.xml
 
-# Userdebug only Vendor Interface Manifest
+# ENG only Vendor Interface Manifest
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/bonito/framework_manifest_userdebug.xml
 DEVICE_MATRIX_FILE += device/google/bonito/compatibility_matrix_userdebug.xml
 endif
+
+DEVICE_MANIFEST_FILE += device/google/bonito/lineage_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/bonito/lineage_compatibility_matrix.xml
 
 ODM_MANIFEST_SKUS := \
     G020A \
