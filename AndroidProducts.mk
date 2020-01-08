@@ -28,4 +28,8 @@ COMMON_LUNCH_CHOICES := \
 
 COMMON_LUNCH_CHOICES += \
     lineage_bonito-userdebug \
-    lineage_sargo-userdebug
+    lineage_sargo-userdebug \
+    lineage_bonito-user \
+    lineage_sargo-user \
+    lineage_bonito-eng \
+    lineage_sargo-eng
