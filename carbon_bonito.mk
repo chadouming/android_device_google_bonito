@@ -49,10 +49,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="bonito" \
     PRIVATE_BUILD_DESC="bonito-user 10 QQ1A.200105.002 6031801 release-keys"
 
-BUILD_FINGERPRINT := "google/bonito/bonito:10/QQ1A.200105.002/6031801:user/release-keys"
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=google/bonito/bonito:10/QQ1A.200105.002/6031801:user/release-keys
+BUILD_FINGERPRINT := google/bonito/bonito:$(BASE_FINGERPRINT):user/release-keys
 
 BOARD_PREBUILT_VENDORIMAGE := vendor/images/bonito/vendor.img
 
