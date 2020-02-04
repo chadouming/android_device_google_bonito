@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "chadouming/android_device_google_bonito",
+    "target_path": "device/google/bonito"
+  }
+]

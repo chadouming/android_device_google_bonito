@@ -19,27 +19,27 @@ $(call inherit-product, vendor/carbon/config/gsm.mk)
 $(call inherit-product, vendor/carbon/config/common.mk)
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/google/bonito/aosp_bonito.mk)
+$(call inherit-product, device/google/bonito/aosp_sargo.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
-PRODUCT_NAME := carbon_bonito
-PRODUCT_DEVICE := bonito
+PRODUCT_NAME := carbon_sargo
+PRODUCT_DEVICE := sargo
 PRODUCT_BRAND := Google
 PRODUCT_MODEL := Pixel 3a XL
 PRODUCT_MANUFACTURER := Google
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME="bonito" \
-    TARGET_DEVICE="bonito" \
-    PRIVATE_BUILD_DESC="bonito-user 10 QQ1A.200105.002 6031801 release-keys"
+    PRODUCT_NAME="sargo" \
+    TARGET_DEVICE="sargo" \
+    PRIVATE_BUILD_DESC="sargo-user 10 QQ1A.200105.002 6031801 release-keys"
 
-BUILD_FINGERPRINT := "google/bonito/bonito:10/QQ1A.200105.002/6031801:user/release-keys"
+BUILD_FINGERPRINT := "google/sargo/sargo:10/QQ1A.200105.002/6031801:user/release-keys"
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=google/bonito/bonito:10/QQ1A.200105.002/6031801:user/release-keys
+    ro.build.fingerprint=google/sargo/sargo:10/QQ1A.200105.002/6031801:user/release-keys
 
 BOARD_PREBUILT_VENDORIMAGE := vendor/images/bonito/vendor.img
 

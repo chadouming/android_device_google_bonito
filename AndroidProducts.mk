@@ -17,4 +17,9 @@
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_bonito.mk \
     $(LOCAL_DIR)/aosp_sargo.mk \
-    $(LOCAL_DIR)/carbon.mk
+    $(LOCAL_DIR)/carbon_bonito.mk \
+    $(LOCAL_DIR)/carbon_sargo.mk
+
+COMMON_LUNCH_CHOICES := \
+    carbon_bonito-user \
+    carbon_sargo-user
