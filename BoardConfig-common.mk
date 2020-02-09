@@ -39,6 +39,7 @@ TARGET_BOARD_COMMON_PATH := device/google/bonito/sdm710
 BUILD_BROKEN_DUP_RULES := true
 
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0
+BOARD_KERNEL_CMDLINE += loop.max_part=8
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1
 BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware
@@ -103,12 +104,15 @@ BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 # boot.img
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
 
+# vendor.img
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+
 BOARD_EXT4_SHARE_DUP_BLOCKS := true
 BOARD_SUPER_PARTITION_GROUPS := google_dynamic_partitions
 BOARD_GOOGLE_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
-    vendor \
-    product
+    product \
+    vendor
 
 BOARD_SUPER_PARTITION_SIZE := 4072669184
 BOARD_SUPER_PARTITION_METADATA_DEVICE := system
@@ -195,6 +199,9 @@ DEVICE_MANIFEST_FILE := device/google/bonito/manifest.xml
 DEVICE_MATRIX_FILE := device/google/bonito/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/bonito/device_framework_matrix.xml
 
+# Security Patch Level
+VENDOR_SECURITY_PATCH := 2020-02-05
+
 # Userdebug only Vendor Interface Manifest
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/bonito/framework_manifest_userdebug.xml
@@ -226,4 +233,5 @@ TARGET_USES_MKE2FS := true
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b4s4-setup.sh
 
--include vendor/google_devices/bonito/proprietary/BoardConfigVendor.mk
+# Vendor
+include vendor/google_devices/bonito/BoardConfigVendorPartial.mk

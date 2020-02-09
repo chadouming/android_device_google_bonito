@@ -25,6 +25,9 @@ $(call inherit-product, device/google/bonito/aosp_sargo.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
+# Inherit common fingerprint
+include device/google/bonito/base_fingerprint.mk
+
 PRODUCT_NAME := carbon_sargo
 PRODUCT_DEVICE := sargo
 PRODUCT_BRAND := Google
@@ -33,8 +36,7 @@ PRODUCT_MANUFACTURER := Google
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="sargo" \
-    TARGET_DEVICE="sargo" \
-    PRIVATE_BUILD_DESC="sargo-user 10 QQ1A.200105.002 6031801 release-keys"
+    TARGET_DEVICE="sargo"
 
 BUILD_FINGERPRINT := google/sargo/sargo:$(BASE_FINGERPRINT):user/release-keys
 
